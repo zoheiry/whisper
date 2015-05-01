@@ -76,6 +76,7 @@ body{
       margin-bottom: 30px;
       margin-top: 30px;
       box-shadow: 10px 10px 14px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
       &__heading{
         height:60px;
         width:100%;
@@ -528,7 +529,5 @@ body .container_ui input[type="checkbox"]:checked + .message > .container_ui__ex
 }
 
 .hidden-menu {
-	-webkit-transform: scale3d(0, 1, 1);
-	-moz-transform: scale3d(0, 1, 1);
-	transform: scale3d(0, 1, 1);
+	right: -405px;
 }
