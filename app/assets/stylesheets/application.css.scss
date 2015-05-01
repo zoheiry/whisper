@@ -73,6 +73,7 @@ body{
       width: 95%;
       background:white;
       margin: 0 auto;
+      margin-bottom: 30px;
       margin-top: 30px;
       box-shadow: 10px 10px 14px rgba(0, 0, 0, 0.3);
       &__heading{
@@ -110,7 +111,9 @@ body{
           float:left;
           text-align:right;
           position: relative;
-          top: 25px;
+          padding: 22px;
+          padding-left: 0;
+          padding-right: 0;
           right: 20px;
           cursor:pointer;
           div{
@@ -475,6 +478,7 @@ body .container_ui input[type="checkbox"]:checked + .message > .container_ui__ex
 .menu-bar {
 	box-shadow: -7px 7px 15px 0px rgba(0, 0, 0, 0.4);
 	width: 40%;
+	min-width: 300px;
 	height: calc(100% - 60px);
 	right: 0;
 	background: #333658;
@@ -509,6 +513,7 @@ body .container_ui input[type="checkbox"]:checked + .message > .container_ui__ex
 				text-decoration: none;
 				display: block;
 				padding: 10px;
+				padding-left: 20px;
 				line-height: 30px;
 				i {
 					margin-right: 10px;
