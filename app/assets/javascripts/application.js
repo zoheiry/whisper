@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).on('click', '.menu_icon', function(){
+	$(".menu-bar").toggleClass('hidden-menu');
+});
