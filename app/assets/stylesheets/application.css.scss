@@ -30,7 +30,7 @@
 body{
   background-image:url('http://www.jamiecoulter.co.uk/dev/codepen/blurred_bg.jpg');
   font-family: 'Raleway', sans-serif;
-  height:100vh;
+  height: calc(100vh - 30px);
   margin: 0;
   padding: 0;
   .title{
@@ -90,13 +90,12 @@ body{
           color:rgb(174, 177, 216);
           text-transform:uppercase;
           font-weight:700;
-          height: 10px;
           margin: 0 auto;
           font-size:12px;
           float:left;
           width:33%;
           letter-spacing:1px;
-          line-height: 64px;
+          line-height: 60px;
           text-align: center;
         }
         .header_icon{
@@ -128,7 +127,7 @@ body{
         display:none;
       }
       .message:hover > .container_ui__item .face .color_bar{
-        width:81px;
+        width: 71px;
         transition-property:width;
         transition-duration:.4s;
         -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -223,7 +222,7 @@ body{
       &__item{
         width: 100%;
         float: left;
-        height: 74px;
+        height: 71px;
         text-align:left;
         color:black;
         box-shadow: 0px -1px rgba(0, 0, 0, 0.07);
@@ -262,9 +261,7 @@ body{
           margin-right:10px;
           position:relative;
           img{
-            height: 81px;
-            /* margin: 10px; */
-            /* border-radius: 5px; */
+            height: 71px;
           }
           .color_bar{
             float: right;
