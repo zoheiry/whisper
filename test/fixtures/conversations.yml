@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  u1_id: 
+  u2_id: 
+  u1_pk: MyString
+  u2_pk: MyText
+  channel_name: MyText
+
+two:
+  u1_id: 
+  u2_id: 
+  u1_pk: MyString
+  u2_pk: MyText
+  channel_name: MyText

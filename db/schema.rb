@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150502094054) do
+ActiveRecord::Schema.define(version: 20150502160746) do
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "u1_id"
+    t.integer  "u2_id"
+    t.string   "u1_pk"
+    t.string   "u2_pk"
+    t.string   "channel_name"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -29,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150502094054) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
+    t.string   "public_key"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
