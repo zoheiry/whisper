@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get '/c/:channel_name' => 'conversations#conversation'
 
+  get '/k/:public_key' => 'conversations#key'
+
   # devise_for :users
 
   devise_for :users

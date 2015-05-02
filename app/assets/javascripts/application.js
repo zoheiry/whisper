@@ -23,6 +23,8 @@ $(document).ready(function() {
 
     $("#public_k").html(public_key);
     $("#private_k").html(private_key);
+
+    $("#claim-key").attr("href", "/k/" + getPublicKey());
   }
 });
 

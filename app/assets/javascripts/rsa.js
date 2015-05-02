@@ -1239,14 +1239,14 @@ function stringify(array2D) {
   for(var i = 0; i < array2D.length; i++) {
     out += array2D[i].toString();
     if(i + 1 < array2D.length) {
-      out+= "/";
+      out+= "-";
     }
   }
   return out;
 }
 
 function arrayify(str) {
-  var array = str.split('/');
+  var array = str.split('-');
   for(var i = 0; i < array.length; i++) {
     array[i] = parseArrayInt(array[i]);
   }
