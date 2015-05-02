@@ -15,6 +15,7 @@ function subscribe() {
 function publish(message) {
 	channel_name = $("#channel_name").text();
 	console.log("going to encrypt this " + message);
+	console.log($("#receiver_pub_key").text());
 	var encryped_message = encrypt(message, $("#receiver_pub_key").text());
 	PUBNUB_message.publish({
 		channel: channel_name,

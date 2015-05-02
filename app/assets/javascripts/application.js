@@ -37,13 +37,19 @@ $(document).on('keyup', '#add_friend_input', function(e){
 
 $(document).on('click', '#send_message', function(){
   publish($(".reply-area").val());
-  $(this).val('');
+  $(".reply-area").val('');
 });
 
 $(document).on('click', "#new_user input:submit", function(e){
   e.preventDefault();
-  if($("#priv_key").val().length == 0) {
-    alert('please paste your private Key');
+  if($("#priv_key").length != 0) {
+    if($("#priv_key").val().length == 0) {
+      alert('please paste your private Key');
+    }
+    else {
+      localStorage.setItem('private_key', $("#priv_key").val());
+      $("#new_user").submit();
+    }
   }
   else {
     localStorage.setItem('private_key', $("#priv_key").val());
