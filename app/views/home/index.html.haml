@@ -11,9 +11,10 @@
           %i.fa.fa-times
           Deactivate account
       %li
-        %a{href: "#"}
-          %i.fa.fa-sign-out
+        = link_to destroy_user_session_path, :method => :delete do
           Sign out
+          %i.fa.fa-sign-out
+          
   .container_ui__heading
     .header_icon
       %i.fa.fa-envelope
