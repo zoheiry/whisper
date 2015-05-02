@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  get '/a/:user_id' => 'conversations#add_friend'
+  post '/a/:username' => 'conversations#add_friend'
 
   get '/c/:channel_name' => 'conversations#conversation'
 

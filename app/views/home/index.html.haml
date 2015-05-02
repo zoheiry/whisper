@@ -2,9 +2,10 @@
   .menu-bar.hidden-menu
     %ul
       %li
-        %a{href: "#"}
+        %a#add_friend_btn{href: "#"}
           %i.fa.fa-users
           Add Friend
+        %input#add_friend_input{type: "text", placeholder: "Your friend's username", autofocus: "true"}
       %li
         %a{href: "#"}
           %i.fa.fa-times

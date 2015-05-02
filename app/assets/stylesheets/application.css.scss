@@ -517,6 +517,8 @@ body .container_ui input[type="checkbox"]:checked + .message > .container_ui__ex
 		list-style: none;
 		padding: 0;
 		li {
+      overflow: hidden;
+      position: relative;
 			border-bottom: solid 1px #FFF;
 			transition: 0.3s ease-in-out;
 			-webkit-transition: 0.3s ease-in-out;
@@ -542,6 +544,21 @@ body .container_ui input[type="checkbox"]:checked + .message > .container_ui__ex
 					top: 2px;
 				}
 			}
+      input {
+        @extend .transition-3;
+        display: none;
+        padding: 14px;
+        padding-left: 0;
+        padding-right: 0;
+        text-indent: 14px;
+        width: 100%;
+        position: absolute;
+        top: 1px;
+        right: -500px;
+        background: #FFF;
+        font-size: 15px;
+        border: solid 1px transparent;
+      }
 		}
 	}
 }

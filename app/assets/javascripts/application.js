@@ -19,30 +19,51 @@ $(document).on('click', '.menu_icon', function(){
 	$(".menu-bar").toggleClass('hidden-menu');
 });
 
+$(document).on('click', '#add_friend_btn', function(){
+  var input_field = $(this).parent().find('input')
+  input_field.show();
+  setTimeout(function(){
+    input_field.css('right', '0');
+  }, 10);
+});
 
-(function () {
-var textFile = null,
-  makeTextFile = function (text) {
-    var data = new Blob([text], {type: 'text/plain'});
+$(document).on('keyup', '#add_friend_input', function(e){
+  if(e.keyCode == 13) {
+    alert('ere')
+    addFriend($("#add_friend_input").val());
+  }
+});
 
-    // If we are replacing a previously generated file we need to
-    // manually revoke the object URL to avoid memory leaks.
-    if (textFile !== null) {
-      window.URL.revokeObjectURL(textFile);
-    }
+// (function () {
+// var textFile = null,
+//   makeTextFile = function (text) {
+//     var data = new Blob([text], {type: 'text/plain'});
 
-    textFile = window.URL.createObjectURL(data);
+//     // If we are replacing a previously generated file we need to
+//     // manually revoke the object URL to avoid memory leaks.
+//     if (textFile !== null) {
+//       window.URL.revokeObjectURL(textFile);
+//     }
 
-    return textFile;
-  };
+//     textFile = window.URL.createObjectURL(data);
+
+//     return textFile;
+//   };
 
 
-  var create = document.getElementById('create'),
-    textbox = document.getElementById('keys');
+//   var create = document.getElementById('create'),
+//     textbox = document.getElementById('keys');
 
-  create.addEventListener('click', function () {
-    var link = document.getElementById('downloadlink');
-    link.href = makeTextFile(textbox.value);
-    link.style.display = 'block';
-  }, false);
-})();
+//   create.addEventListener('click', function () {
+//     var link = document.getElementById('downloadlink');
+//     link.href = makeTextFile(textbox.value);
+//     link.style.display = 'block';
+//   }, false);
+// })();
+
+function addFriend(username) {
+  $.ajax({
+    type: "post",
+    url: "/a/" + username
+  })
+}
