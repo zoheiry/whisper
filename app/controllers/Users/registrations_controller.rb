@@ -28,6 +28,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
       resource.authy_id = authy.id # this will give you the user authy id to store it in your database
       resource.update_attributes(authy_id: authy.id)
+      # redirect_to "/your_keys"
       # resource.save
     else
       authy.errors # this will return an error hash
