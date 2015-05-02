@@ -11,12 +11,16 @@ function subscribe(channel_name) {
 }
 
 function publish(message, channel_name) {
+	console.log("going to encrypt this " + message);
+	var encryped_message = encrypt(message, $("#receiver_pub_key").text());
 	PUBNUB_message.publish({
 		channel: channel_name,
-		message: message
+		message: encryped_message
 	});
 }
 
 function subscribeCallback(m) {
-	console.log(m);
+	console.log("going to decrypt this " + m);
+	var decrypted_message = decrypt(m, localStorage.getItem("private_key"));
+	console.log(decrypted_message);
 }
