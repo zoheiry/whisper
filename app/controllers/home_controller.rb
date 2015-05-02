@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 		# 	current_user.update_attributes(sign_in_count: 2)
 		# 	redirect_to '/your_keys'
 		# end
-		@user = {username: "Zoheiry"}		
+		@user = current_user	
 		# flash[:alert] = "Here.."
 	end
 	
