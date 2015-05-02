@@ -12,7 +12,7 @@ class ConversationsController < ApplicationController
 		else
 			@user_id = @conversation.u1_id
 		end
-		@user = User.find(@user_id)
+		@other_user = User.find(@user_id)
 	end
 
 	# GET /k/:public_key

@@ -1,7 +1,7 @@
 #channel_name{style: "display: none;"}<
   = @channel_name
 #receiver_pub_key{style: "display: none;"}<
-  = @user.public_key
+  = @other_user.public_key
 .container_ui.clearfix.large-container
   .menu-bar.hidden-menu
     %ul
@@ -30,8 +30,9 @@
       .div
       .div
   .user-about
-    .user-avatar{style: "background-image: url(https://s3.amazonaws.com/uifaces/faces/twitter/gerrenlamson/128.jpg)"}
-    %h3 Kareem Wahby
+    .user-avatar{style: "background-image: url(#{@other_user.gravatar_url})"}
+    %h3
+      = @other_user.username
   .messages-container
   %textarea.reply-area{placeholder: "Reply"}
   .reply-btn#send_message Send
