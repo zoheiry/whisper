@@ -59,7 +59,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # You can put the params you want to permit in the empty array.
   # def configure_sign_up_params
@@ -73,8 +73,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    super(resource)
-    redirect_to "/your_keys"
+    # super(resource)
+    "/your_keys"
   end
 
   # The path used after sign up for inactive accounts.
