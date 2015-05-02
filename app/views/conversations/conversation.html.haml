@@ -1,4 +1,8 @@
-.container_ui.clearfix
+#channel_name{style: "display: none;"}<
+  = @channel_name
+#receiver_pub_key{style: "display: none;"}<
+  = @user.public_key
+.container_ui.clearfix.large-container
   .menu-bar.hidden-menu
     %ul
       %li
@@ -25,17 +29,11 @@
       .div
       .div
       .div
-  - @friends.each do |f|
-    - @channel_name = Conversation.where(u1_id: f.id)[0]
-    - unless @channel_name
-      - @channel_name = Conversation.where(u2_id: f.id)[0]
-    %a.message{href: "/c/#{@channel_name.channel_name}" }
-      .container_ui__item
-        .face
-          %img{:src => 'https://s3.amazonaws.com/uifaces/faces/twitter/gerrenlamson/128.jpg'}
-          .color_bar.one
-            %p Now Reading
-            %span Read
-        %h2 
-          = f.username
-        %h4 Lorem ipsum dolor sit amet...
+  .user-about
+    .user-avatar{style: "background-image: url(https://s3.amazonaws.com/uifaces/faces/twitter/gerrenlamson/128.jpg)"}
+    %h3 Kareem Wahby
+  .messages-container
+  %textarea.reply-area{placeholder: "Reply"}
+  .reply-btn#send_message Send
+:javascript
+  subscribe($("#channel_name"))

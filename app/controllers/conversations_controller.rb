@@ -1,9 +1,18 @@
 class ConversationsController < ApplicationController
-
+	before_filter :authenticate_user!
 
 	# GET /c/:channel_name
 	def conversation
-		# TODO 
+		@channel_name = params[:channel_name]
+		@user = current_user
+		@conversation = Conversation.where(channel_name: params[:channel_name])[0]
+		@user_id
+		if @conversation.u1_id == current_user.id
+			@user_id = @conversation.u2_id
+		else
+			@user_id = @conversation.u1_id
+		end
+		@user = User.find(@user_id)
 	end
 
 	# GET /k/:public_key
@@ -17,29 +26,32 @@ class ConversationsController < ApplicationController
 	def add_friend
 		# raise Exception params
 		u1_id = current_user.id
-		u2_id = params[:user_id]
-
-		if !Conversation.where(u1_id: u1_id, u2_id: u2_id).length == 0
+		u2_username = params[:username]
+		u2 = User.where(username: u2_username)[0]
+		u2_id = u2.id
+		puts "U1 id" + u1_id.to_s
+		puts "U2 id" + u2_id.to_s
+		if !(Conversation.where(u1_id: u1_id, u2_id: u2_id).length == 0)
 			redirect_to "/", alert: "Failed to add user.." and return
-		end
-
-		u1_pk = current_user.public_key
-		u2 = User.find(u2_id)
-		u2_pk = u2.public_key
-
-		c = Conversation.new
-		cn = current_user.username + u2.username
-
-		c.u1_id = u1_id
-		c.u2_id = u2_id
-		c.u1_pk = u1_pk
-		c.u2_pk = u2_pk
-		c.channel_name = cn
-
-		if c.save
-			redirect_to "/c/#{c.channel_name}", notice: "Successfully added #{u2.username}!"
+		
 		else
-			redirect_to "/", alert: "Failed to add user.."
+			u1_pk = current_user.public_key
+			u2_pk = u2.public_key
+
+			c = Conversation.new
+			cn = current_user.username + u2.username
+
+			c.u1_id = u1_id
+			c.u2_id = u2_id
+			c.u1_pk = u1_pk
+			c.u2_pk = u2_pk
+			c.channel_name = cn
+
+			if c.save
+				redirect_to "/c/#{c.channel_name}", notice: "Successfully added #{u2.username}!"
+			else
+				redirect_to "/", alert: "Failed to add user.."
+			end
 		end
 
 	end

@@ -7,6 +7,19 @@ class HomeController < ApplicationController
 		# end
 		@user = current_user	
 		# flash[:alert] = "Here.."
+		@friend_ids = []
+		@friends = []
+		@conversations1 = Conversation.where(u1_id: current_user.id)
+		@conversations2 = Conversation.where(u2_id: current_user.id)
+		@conversations1.each do |c|
+			@friend_ids.push(c.u2_id)
+		end
+		@conversations2.each do |c|
+			@friend_ids.push(c.u1_id)
+		end
+		@friend_ids.each do |f|
+			@friends.push(User.find(f))
+		end
 	end
 	
 	def keys
