@@ -475,7 +475,7 @@ body .container_ui input[type="checkbox"]:checked + .message > .container_ui__ex
   pointer-events:auto;
 }
 
-/* Let's do some animations! */
+// Let's do some animations!
 
 @keyframes pop{
   0%{transform:scale(0)}
@@ -548,4 +548,74 @@ body .container_ui input[type="checkbox"]:checked + .message > .container_ui__ex
 
 .hidden-menu {
 	right: -405px;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+
+.signup-container {
+  max-width: 1000px;
+  width: 95%;
+  padding: 30px;
+  background-color: #FFF;
+  margin: 30px auto;
+  text-align: center;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.3);
+  input:not([type="submit"]) {
+    max-width: 295px;
+    font-size: 16px;
+    width: 90%;
+    line-height: 30px;
+    border: 1px solid #ABADB3;
+    text-indent: 6px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+  }
+  input[type="submit"] {
+    @extend .green-btn;
+  }
+  input[type="checkbox"] {
+    width: auto !important;
+  }
+  .or-separator {
+    position: relative;
+    width: 30px;
+    background-color: white;
+    top: -20px;
+    left: 2px;
+    margin: 0 auto;
+  }
+  hr {
+    margin-top: 30px;
+    width: 60%;
+  }
+}
+
+.green-btn {
+  max-width: 295px;
+  width: 90%;
+  background-color: #56B699;
+  color: #FFF;
+  padding: 8px;
+  border-radius: 3px;
+  outline: none;
+  border: solid 1px transparent;
+  cursor: pointer;
+  @extend .transition-3;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.transition-3 {
+  transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+}
+
+.bare-link {
+  color: #2b9ab6;
+  text-decoration: underline;
 }
