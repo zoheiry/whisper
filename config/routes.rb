@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get '/your_keys' => 'home#keys'
+  get '/location/index' => 'location_sharing#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
