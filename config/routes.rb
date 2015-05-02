@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'home#index'
 
+  get '/your_keys' => 'home#keys'
+
   get '/a/:user_id' => 'conversations#add_friend'
 
   get '/c/:channel_name' => 'conversations#conversation'
@@ -9,7 +11,6 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get '/your_keys' => 'home#keys'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
