@@ -618,6 +618,11 @@ body .container_ui input[type="checkbox"]:checked + .message > .container_ui__ex
   }
 }
 
+.key {
+  opacity: 0.5;
+  word-break: break-all;
+}
+
 .green-btn {
   max-width: 295px;
   width: 90%;

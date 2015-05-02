@@ -15,6 +15,13 @@ class ConversationsController < ApplicationController
 		@user = User.find(@user_id)
 	end
 
+	# GET /k/:public_key
+	def key
+		current_user.public_key = params[:public_key]
+		current_user.save
+		redirect_to "/", notice: "Claimed public key :)"
+	end
+
 	# GET /a/:user_id
 	def add_friend
 		# raise Exception params
