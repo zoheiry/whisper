@@ -26,6 +26,24 @@
   }
 }
 
+.alert {
+  padding-top: 24px;
+  padding-bottom: 24px;
+  width: 100%;
+  text-align: center; 
+  background-color: rgb(208, 94, 94);
+  color: white;
+}
+
+.notice {
+  padding-top: 24px;
+  padding-bottom: 24px;
+  width: 100%;
+  text-align: center;
+  background-color: rgb(172, 211, 93);
+  color: white;
+}
+
 
 body{
   background-image:url('http://www.jamiecoulter.co.uk/dev/codepen/blurred_bg.jpg');
