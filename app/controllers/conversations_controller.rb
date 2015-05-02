@@ -3,7 +3,16 @@ class ConversationsController < ApplicationController
 
 	# GET /c/:channel_name
 	def conversation
-		# TODO 
+		@channel_name = params[:channel_name]
+		@user = current_user
+		@conversation = Conversation.where(channel_name: params[:channel_name])[0]
+		@user_id
+		if @conversation.u1_id == current_user.id
+			@user_id = @conversation.u2_id
+		else
+			@user_id = @conversation.u1_id
+		end
+		@user = User.find(@user_id)
 	end
 
 	# GET /a/:user_id

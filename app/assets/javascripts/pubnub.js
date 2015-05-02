@@ -9,6 +9,7 @@ function subscribe() {
 	    channel: channel_name,
 	    message: function(m){subscribeCallback(m)}
 	});
+	console.log(channel_name)
 }
 
 function publish(message) {

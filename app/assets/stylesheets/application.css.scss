@@ -95,6 +95,9 @@ body{
       margin-top: 30px;
       box-shadow: 10px 10px 14px rgba(0, 0, 0, 0.3);
       overflow: hidden;
+      &.large-container {
+        min-height: 580px;
+      }
       &__heading{
         height:60px;
         width:100%;
@@ -102,12 +105,19 @@ body{
         .header_icon{
           float:left;
           text-align:left;
+          i {
+            font-size: 20px;
+            color: rgba(0, 0, 0, 0.26);
+            position: relative;
+            top: 18px;
+            left: 18px;
+          }
           img{
             margin:17px 20px 20px 20px;
             cursor:pointer;
           }
         }
-        h1{
+        a{
           color:rgb(174, 177, 216);
           text-decoration: underline;
           text-transform:uppercase;
@@ -168,8 +178,8 @@ body{
       input[type="checkbox"]:checked + .message > .container_ui__expand{
         transition-property:left,opacity;
         transition-duration:.4s;
-        left:380px;
-        z-index:-1;
+        // left:380px;
+        // z-index:-1;
         opacity:1;
         -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
         pointer-events:none;
@@ -635,4 +645,73 @@ body .container_ui input[type="checkbox"]:checked + .message > .container_ui__ex
 .bare-link {
   color: #2b9ab6;
   text-decoration: underline;
+}
+
+.user-about {
+  @extend .clearfix;
+  padding: 5px;
+  text-align: center;
+  border-bottom: solid 1px #e3e3e3;
+  .user-avatar {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  h3 {
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-size: 16px;
+  }
+}
+
+.messages-container {
+  height: 300px;
+  overflow: auto;
+  .single-message {
+    color: #FFF;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    &.sender {
+      background-color: #56B699;
+      float: right;
+    }
+    &.receiver {
+      background-color: #D05E5E;
+      float: left;
+    }
+  }
+}
+
+.reply-area {
+  width: 100%;
+  font-size: 16px;
+  display: block;
+  margin: 0 auto;
+  height: 80px;
+  padding-top: 6px;
+  text-indent: 10px;
+  border-left: none;
+  border-right: none;
+  border-color: #e3e3e3;
+  resize: none;
+}
+
+.reply-btn {
+  @extend .green-btn;
+  background-color: #EA9739;
+  width: 100%;
+  display: block;
+  max-width: none;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 24px;
+  padding-left: 0;
+  padding-right: 0;
+  border-radius: 0;
 }

@@ -34,6 +34,10 @@ $(document).on('keyup', '#add_friend_input', function(e){
   }
 });
 
+$(document).on('click', '#send_message', function(){
+  publish($(".reply-area").val());
+});
+
 // (function () {
 // var textFile = null,
 //   makeTextFile = function (text) {
