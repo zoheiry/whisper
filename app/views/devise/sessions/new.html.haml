@@ -11,7 +11,7 @@
         = f.label :remember_me
     .actions
       = f.submit "Sign in"
-    <input type="text" placeholder="Your Private Key" id="priv_key" </input>
+    %input{type: 'text', placeholder: "Please paste your private key", id: "priv_key"}
   %hr
   .or-separator or
   %a.bare-link{:href => "/users/sign_up"} Sign up
