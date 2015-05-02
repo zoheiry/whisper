@@ -3,14 +3,16 @@ var PUBNUB_message = PUBNUB.init({
     subscribe_key: 'sub-c-69ec4ef8-bbfd-11e3-b6e0-02ee2ddab7fe'
 });
 
-function subscribe(channel_name) {
+function subscribe() {
+	channel_name = $("#channel_name").text();
 	PUBNUB_message.subscribe({
 	    channel: channel_name,
 	    message: function(m){subscribeCallback(m)}
 	});
 }
 
-function publish(message, channel_name) {
+function publish(message) {
+	channel_name = $("#channel_name").text();
 	console.log("going to encrypt this " + message);
 	var encryped_message = encrypt(message, $("#receiver_pub_key").text());
 	PUBNUB_message.publish({
