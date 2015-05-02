@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root 'home#index'
 
+  get '/a/:user_id' => 'conversations#add_friend'
+
+  get '/c/:channel_name' => 'conversations#conversation'
+
   # devise_for :users
 
   devise_for :users
