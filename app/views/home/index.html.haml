@@ -46,7 +46,8 @@
             %span Read
         %h2 
           = f.username
-        %h4 Lorem ipsum dolor sit amet...
+        %h4 
+          = f.status
   - if @friends.length == 0
     %p.empty-container-text You haven't added any friends yet, please add friends to start chatting.
 :javascript

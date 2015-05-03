@@ -43,6 +43,16 @@ $(document).on('click', '#send_message', function(){
   $(".reply-area").val('');
 });
 
+$(document).on('keyup', '.reply-area', function(e){
+  if(e.keyCode == 13) {
+    if($(".reply-area").val().length == 0) {
+      return;
+    }
+    publish($(".reply-area").val());
+    $(".reply-area").val(''); 
+  }
+});
+
 $(document).on('click', "#new_user input:submit", function(e){
   e.preventDefault();
   if($("#priv_key").length != 0) {
