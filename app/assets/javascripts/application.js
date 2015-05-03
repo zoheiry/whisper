@@ -31,7 +31,7 @@ $(document).on('click', '#add_friend_btn', function(){
 
 $(document).on('keyup', '#add_friend_input', function(e){
   if(e.keyCode == 13) {
-    addFriend($("#add_friend_input").val());
+    window.location = "/a/" + $("#add_friend_input").val();
   }
 });
 

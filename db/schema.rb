@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150502195801) do
+ActiveRecord::Schema.define(version: 20150503021810) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "u1_id"
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 20150502195801) do
     t.string   "channel_name"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "pendings", force: :cascade do |t|
+    t.integer  "u1_id"
+    t.integer  "u2_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

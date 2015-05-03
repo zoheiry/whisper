@@ -21,6 +21,9 @@ class ConversationsController < ApplicationController
 		u1_id = current_user.id
 		u2_username = params[:username]
 		u2 = User.where(username: u2_username)[0]
+		if(!u2)
+			redirect_to "/", alert: "User does not exist" and return
+		end
 		u2_id = u2.id
 		puts "U1 id" + u1_id.to_s
 		puts "U2 id" + u2_id.to_s
@@ -28,19 +31,24 @@ class ConversationsController < ApplicationController
 			redirect_to "/", alert: "Failed to add user.." and return
 		
 		else
-			u1_pk = current_user.public_key
-			u2_pk = u2.public_key
-
-			c = Conversation.new
-
-			c.u1_id = u1_id
-			c.u2_id = u2_id
-			c.u1_pk = u1_pk
-			c.u2_pk = u2_pk
-			if c.save
-				redirect_to "/c/#{c.channel_name}", notice: "Successfully added #{u2.username}!"
+			if Pending.where(u2_id: current_user.id).length == 0
+				Pending.create(u1_id: u1_id, u2_id: u2_id)
+				redirect_to "/", notice: "Awaiting your friends reply" and return
 			else
-				redirect_to "/", alert: "Failed to add user.."
+				u1_pk = current_user.public_key
+				u2_pk = u2.public_key
+
+				c = Conversation.new
+
+				c.u1_id = u1_id
+				c.u2_id = u2_id
+				c.u1_pk = u1_pk
+				c.u2_pk = u2_pk
+				if c.save
+					redirect_to "/c/#{u2.username}", notice: "Successfully added #{u2.username}!"
+				else
+					redirect_to "/", alert: "Failed to add user.."
+				end
 			end
 		end
 

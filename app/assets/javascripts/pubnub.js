@@ -26,14 +26,19 @@ function publish(message) {
 	$(".messages-container").animate({
 		scrollTop: $(".single-message").last().offset().top
 	});
+	var count = $(".single-message").length
+	localStorage.setItem(channel_name + '-message-' + count, message);
 }
 
 function subscribeCallback(m) {
 	console.log("going to decrypt this " + m);
+	channel_name = $("#publish_channel").text();
 	var decrypted_message = decrypt(m, localStorage.getItem("private_key"));
 	var message_html = "<div class='clearfix'><div class='single-message receiver'>" + decrypted_message + "</div></div>"
 	$(".messages-container").append(message_html);
 	$(".messages-container").animate({
 		scrollTop: $(".single-message").last().offset().top
 	});
+	var count = $(".single-message").length
+	localStorage.setItem(channel_name + '-message-' + count, decrypted_message);
 }

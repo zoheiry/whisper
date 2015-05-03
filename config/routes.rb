@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  post '/a/:username' => 'conversations#add_friend'
+  get '/a/:username' => 'conversations#add_friend'
 
   get '/your_keys' => 'home#keys'
 
