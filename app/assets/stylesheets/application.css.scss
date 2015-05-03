@@ -461,23 +461,23 @@ body{
 
 }
 
-.two{
+._0{
   background:#5674B6 !important;
 }
 
-.three{
+._1{
   background:#D05E5E !important
 }
 
-.four{
+._2{
   background:#ACD35D !important
 }
 
-.five{
+._3{
   background:#EA9739 !important
 }
 
-.six{
+._4{
   background:#B6568D !important
 }
 
@@ -719,4 +719,13 @@ body .container_ui input[type="checkbox"]:checked + .message > .container_ui__ex
   padding-left: 0;
   padding-right: 0;
   border-radius: 0;
+}
+
+.empty-container-text {
+  text-align: center;
+  padding-top: 100px;
+  font-size: 18px;
+  width: 90%;
+  margin: 0 auto;
+  display: block;
 }

@@ -28,16 +28,22 @@
       .div
       .div
       .div
-  - @friends.each do |f|
+  - @friends.each_with_index do |f, i|
     %a.message{href: "/c/#{f.username}" }
       .container_ui__item
         .face
           %img{:src => "#{f.gravatar_url}"}
-          .color_bar.three
+          - @color_num = i
+          - if i > 4
+            - @color_num = 0
+          - @class_name = "_" + @color_num.to_s 
+          .color_bar{class: "#{@class_name}"}
             %p Now Reading
             %span Read
         %h2 
           = f.username
         %h4 Lorem ipsum dolor sit amet...
+  - if @friends.length == 0
+    %p.empty-container-text You haven't added any friends yet, please add friends to start chatting.
 :javascript
   subscribe()
