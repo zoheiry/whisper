@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # get 'authy/two-step'
+
   root 'home#index'
 
   get '/a/:username' => 'conversations#add_friend'
@@ -11,9 +13,16 @@ Rails.application.routes.draw do
 
   post '/k/:public_key' => 'conversations#key'
 
+  get '/two-step' => 'authy#two_step'
+
+  post '/confirm_code' => 'authy#confirm'
+
+  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
+
+
   # devise_for :users
 
-  devise_for :users
+  # devise_for :users
 
   # devise_for :users
 
