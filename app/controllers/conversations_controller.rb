@@ -1,5 +1,6 @@
 class ConversationsController < ApplicationController
-	before_filter :authenticate_user!
+	before_filter :authenticate_user!, only:[:conversation]
+	# before_filter :check_relation, only[:conversation]
 
 	# GET /c/:channel_name
 	def conversation
@@ -11,7 +12,7 @@ class ConversationsController < ApplicationController
 	def key
 		current_user.public_key = params[:public_key]
 		current_user.save
-		redirect_to "/", notice: "Claimed public key :)"
+		render :json => {status: "Keys added successfully, but please keep your private key safe, as you will be aske for it upon sign up"}
 	end
 
 	# GET /a/:user_id
@@ -67,5 +68,7 @@ class ConversationsController < ApplicationController
 	# 	) { |data| puts data.response }
 	# 	render :json => {status: "published " + params[:message].to_s + " to channel " + params[:channel_name].to_s}
 	# end
-
+	def check_relation
+		
+	end
 end

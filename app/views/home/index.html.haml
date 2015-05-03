@@ -13,6 +13,10 @@
           %i.fa.fa-times
           Deactivate account
       %li
+        %a{href: "/your_keys"}
+          %i.fa.fa-key
+          Generate new Keys
+      %li
         = link_to destroy_user_session_path, :method => :delete do
           %i.fa.fa-sign-out
           Sign out

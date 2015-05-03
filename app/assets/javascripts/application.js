@@ -105,3 +105,15 @@ $(document).ready(function() {
     $("#claim-key").attr("href", "/k/" + getPublicKey());
   }
 });
+
+$(document).on('click', '#claim-key', function(e){
+  e.preventDefault();
+  localStorage.setItem('private_key', getPrivateKey());
+  $.ajax({
+    type: "post",
+    url: "/k/" + getPublicKey(),
+    success:function(data){
+      alert(data.status)
+    }
+  })
+});
