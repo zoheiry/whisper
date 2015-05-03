@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
 	before_filter :authenticate_user!, only:[:conversation]
-	# before_filter :check_relation, only[:conversation]
+	before_filter :check_relation, only:[:conversation]
 
 	# GET /c/:channel_name
 	def conversation
@@ -69,6 +69,21 @@ class ConversationsController < ApplicationController
 	# 	render :json => {status: "published " + params[:message].to_s + " to channel " + params[:channel_name].to_s}
 	# end
 	def check_relation
-		
+		@u1_id = current_user.id
+		@u2_id
+		@u2 = User.where(username: params[:channel_name])[0]
+		if @u2
+			@u2_id = @u2.id
+		else
+			redirect_to "/", alert: "This user does not exist" and return
+		end
+		@c1 = Conversation.where(u1_id: @u1_id, u2_id: @u2_id)
+		@c2 = Conversation.where(u1_id: @u2_id, u2_id: @u1_id)
+		@c = @c1 + @c2
+		if(@c.length > 0)
+			return true
+		else
+			redirect_to "/", alert: "You are not friends with this user" and return
+		end
 	end
 end

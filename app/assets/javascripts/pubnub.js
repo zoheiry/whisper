@@ -23,6 +23,9 @@ function publish(message) {
 		channel: channel_name,
 		message: encryped_message
 	});
+	$(".messages-container").animate({
+		scrollTop: $(".single-message").last().offset().top
+	});
 }
 
 function subscribeCallback(m) {
@@ -30,4 +33,7 @@ function subscribeCallback(m) {
 	var decrypted_message = decrypt(m, localStorage.getItem("private_key"));
 	var message_html = "<div class='clearfix'><div class='single-message receiver'>" + decrypted_message + "</div></div>"
 	$(".messages-container").append(message_html);
+	$(".messages-container").animate({
+		scrollTop: $(".single-message").last().offset().top
+	});
 }
