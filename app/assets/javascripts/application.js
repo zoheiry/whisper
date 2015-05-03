@@ -142,3 +142,42 @@ function getFromStorage() {
     $(".messages-container").append(message_html);
   }
 }
+
+var visible = false;
+$(document).on('click', '#group-chat', function(){
+  if(visible) {
+    visible = false;
+    $(this).parent().find('.user-dropdown').slideUp();
+  }
+  else {
+    visible = true;
+    $(this).parent().find('.user-dropdown').slideDown();
+  }
+});
+
+$(document).on('click', '.user-dropdown div', function(){
+  $(this).toggleClass('selected');
+});
+
+$(document).on('click', '#create-group', function(){
+  var names = $("#subscribe_channel").text() + "*";
+  $(".user-dropdown div.selected").each(function(i){
+    if(i == $(".user-dropdown div.selected").length - 1) {
+      names += $(this).attr('username');
+    }
+    else {
+      names += $(this).attr('username') + "*";
+    }
+  });
+  console.log(names)
+  visible = false;
+  $(this).parent().slideUp();
+  $.ajax({
+    type: "post",
+    url: '/create_group/' + names,
+    success:function(data) {
+      console.log(data);
+      window.location = "/";
+    }
+  });
+});

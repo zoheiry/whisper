@@ -6,7 +6,25 @@ class ConversationsController < ApplicationController
 	# GET /c/:channel_name
 	def conversation
 		@user = current_user
-		@other_user = User.where(username: params[:channel_name])[0]
+		if params[:channel_name].include? ","
+			@is_group = true
+			@channel_name = params[:channel_name]
+			@members_string = @channel_name.delete(' ')
+			@members_array = @members_string.split(',') - [current_user.username]
+			@members_string = @members_array.join(',')
+			@pub_keys = ""
+			@members_array.each_with_index do |m, i|
+				@u = User.where(username: m)[0]
+				unless i == @members_array.length - 1
+					@pub_keys += @u.public_key + "~"
+				else
+					@pub_keys += @u.public_key
+				end					
+					
+			end
+		else
+			@other_user = User.where(username: params[:channel_name])[0]
+		end
 	end
 
 	# GET /k/:public_key
@@ -32,7 +50,7 @@ class ConversationsController < ApplicationController
 			redirect_to "/", alert: "Failed to add user.." and return
 		
 		else
-			if Pending.where(u2_id: current_user.id).length == 0
+			if Pending.where(u1_id: u2_id, u2_id: current_user.id).length == 0
 				Pending.create(u1_id: u1_id, u2_id: u2_id)
 				redirect_to "/", notice: "Awaiting your friends reply" and return
 			else
@@ -78,6 +96,9 @@ class ConversationsController < ApplicationController
 	# 	render :json => {status: "published " + params[:message].to_s + " to channel " + params[:channel_name].to_s}
 	# end
 	def check_relation
+		if params[:channel_name].include? ","
+			return
+		end
 		@u1_id = current_user.id
 		@u2_id
 		@u2 = User.where(username: params[:channel_name])[0]

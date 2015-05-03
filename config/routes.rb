@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   post '/confirm_code' => 'authy#confirm'
 
+  post '/create_group/:members' => "home#create_group"
 
   # devise_for :users
 

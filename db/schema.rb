@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150503074435) do
+ActiveRecord::Schema.define(version: 20150503164220) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "u1_id"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 20150503074435) do
     t.string   "channel_name"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "group_chats", force: :cascade do |t|
+    t.integer  "u_id"
+    t.integer  "group_id"
+    t.string   "group_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pendings", force: :cascade do |t|

@@ -729,3 +729,28 @@ body .container_ui input[type="checkbox"]:checked + .message > .container_ui__ex
   margin: 0 auto;
   display: block;
 }
+
+.user-dropdown {
+  display: none;
+  div {
+    cursor: pointer;
+    background-color: #2b9ab6;
+    color: #FFF;
+    border-bottom: solid 1px #e3e3e3;
+    padding: 10px;
+    text-align: center;
+    &:last-child {
+      border-bottom: none;
+    }
+    &.selected {
+      background-color: #0a1c28;
+    }
+  }
+  span {
+    display: block;
+    width: 50%;
+    margin: 5px auto;
+    text-align: center;
+    border-radius: 3px;
+  }
+}

@@ -1,15 +1,23 @@
 #subscribe_channel{style: "display: none;"}<
   = @user.username
-#publish_channel{style: "display: none;"}<
-  = @other_user.username
-#receiver_pub_key{style: "display: none;"}<
-  = @other_user.public_key
+-unless @is_group
+  #publish_channel{style: "display: none;"}<
+    = @other_user.username
+  #receiver_pub_key{style: "display: none;"}<
+    = @other_user.public_key
+-else
+  #publish_channel{style: "display: none;"}<
+    = "~" + @members_string
+  #receiver_pub_key{style: "display: none;"}<
+    = @pub_keys
+  #channel_id{style: "display: none"}<
+    = @channel_name
 .container_ui.clearfix.large-container
   .menu-bar.hidden-menu
     %ul
       %li
         %a#add_friend_btn{href: "#"}
-          %i.fa.fa-users
+          %i.fa.fa-user
           Add Friend
         %input#add_friend_input{type: "text", placeholder: "Your friend's username", autofocus: "true"}
       %li
@@ -32,9 +40,12 @@
       .div
       .div
   .user-about
-    .user-avatar{style: "background-image: url(#{@other_user.gravatar_url})"}
+    - @members_array.each do |m|
+      - u = User.where(username: m)[0]
+      .user-avatar{style: "background-image: url(#{u.gravatar_url})"}
     %h3
-      = @other_user.username
+      = (@channel_name.split(',') - [current_user.username]).join(',')
+      
   .messages-container
   %textarea.reply-area{placeholder: "Reply"}
   .reply-btn#send_message Send
