@@ -1,6 +1,7 @@
 class ConversationsController < ApplicationController
 	before_filter :authenticate_user!, only:[:conversation]
 	before_filter :check_relation, only:[:conversation]
+	before_filter :is_authified
 
 	# GET /c/:channel_name
 	def conversation
@@ -94,4 +95,5 @@ class ConversationsController < ApplicationController
 			redirect_to "/", alert: "You are not friends with this user" and return
 		end
 	end
+
 end

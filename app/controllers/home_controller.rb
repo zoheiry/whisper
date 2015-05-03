@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
 	before_filter :authenticate_user!
+	before_filter :is_authified
+
 	def index
 		if current_user.sign_in_count == 1
 			current_user.update_attributes(sign_in_count: 2)
