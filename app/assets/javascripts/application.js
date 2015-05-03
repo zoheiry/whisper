@@ -123,7 +123,8 @@ $(document).on('click', '#claim-key', function(e){
     type: "post",
     url: "/k/" + getPublicKey(),
     success:function(data){
-      alert(data.status)
+      alert(data.status);
+      window.location = "/";
     }
   })
 });

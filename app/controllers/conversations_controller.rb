@@ -45,7 +45,7 @@ class ConversationsController < ApplicationController
 				c.u1_pk = u1_pk
 				c.u2_pk = u2_pk
 				if c.save
-					redirect_to "/c/#{u2.username}", notice: "Successfully added #{u2.username}!"
+					redirect_to "/", notice: "Successfully added #{u2.username}!"
 				else
 					redirect_to "/", alert: "Failed to add user.."
 				end
