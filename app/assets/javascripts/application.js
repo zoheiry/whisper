@@ -117,3 +117,17 @@ $(document).on('click', '#claim-key', function(e){
     }
   })
 });
+
+
+function getFromStorage() {
+  var all_messages = localStorage['all_messages_' + $("#publish_channel").text()];
+  var messages_array = all_messages.split("~");
+  for(var i = 0; i < messages_array.length; i++) {
+    var single_message = messages_array[i];
+    var data = single_message.split("^");
+    var sender_or_receiver = data[1];
+    var message = data[2];
+    var message_html = "<div class='clearfix'><div class='single-message ' " + sender_or_receiver + ">" + message + "</div></div>"
+    $(".messages-container").append(message_html);
+  }
+}

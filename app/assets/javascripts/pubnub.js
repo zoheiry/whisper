@@ -26,8 +26,8 @@ function publish(message) {
 	$(".messages-container").animate({
 		scrollTop: $(".single-message").last().offset().top
 	});
-	var count = $(".single-message").length
-	localStorage.setItem(channel_name + '-message-' + count, message);
+
+	localStorage.setItem('all_message_' + channel_name, localStorage["all_messages_" + channel_name] + "~" + channel_name + '^' + "sender^" + message);
 }
 
 function subscribeCallback(m) {
@@ -39,6 +39,5 @@ function subscribeCallback(m) {
 	$(".messages-container").animate({
 		scrollTop: $(".single-message").last().offset().top
 	});
-	var count = $(".single-message").length
-	localStorage.setItem(channel_name + '-message-' + count, decrypted_message);
+	localStorage.setItem('all_messages_' + channel_name, localStorage["all_messages_" + channel_name] + "~" + channel_name + '^' + "sender^" + decrypted_message);
 }
