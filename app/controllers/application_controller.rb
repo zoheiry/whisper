@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_authified
-		if session[:autify] != "true"
+		if session[:authyify] != "true"
 			redirect_to "/two-step"
 		end
 	end
