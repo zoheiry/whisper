@@ -1,5 +1,7 @@
-#channel_name{style: "display: none;"}<
-  = @channel_name
+#subscribe_channel{style: "display: none;"}<
+  = @user.username
+#publish_channel{style: "display: none;"}<
+  = @other_user.username
 #receiver_pub_key{style: "display: none;"}<
   = @other_user.public_key
 .container_ui.clearfix.large-container
@@ -15,7 +17,7 @@
           %i.fa.fa-times
           Deactivate account
       %li
-        %a{href: "#"}
+        = link_to destroy_user_session_path, :method => :delete do
           %i.fa.fa-sign-out
           Sign out
   .container_ui__heading
@@ -37,4 +39,4 @@
   %textarea.reply-area{placeholder: "Reply"}
   .reply-btn#send_message Send
 :javascript
-  subscribe($("#channel_name"))
+  subscribe()

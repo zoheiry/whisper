@@ -1,3 +1,5 @@
+#subscribe_channel{style: "display: none;"}<
+  = @user.username
 .container_ui.clearfix
   .menu-bar.hidden-menu
     %ul
@@ -12,8 +14,8 @@
           Deactivate account
       %li
         = link_to destroy_user_session_path, :method => :delete do
-          Sign out
           %i.fa.fa-sign-out
+          Sign out
           
   .container_ui__heading
     .header_icon
@@ -27,10 +29,7 @@
       .div
       .div
   - @friends.each do |f|
-    - @channel_name = Conversation.where(u1_id: f.id)[0]
-    - unless @channel_name
-      - @channel_name = Conversation.where(u2_id: f.id)[0]
-    %a.message{href: "/c/#{@channel_name.channel_name}" }
+    %a.message{href: "/c/#{f.username}" }
       .container_ui__item
         .face
           %img{:src => "#{f.gravatar_url}"}
@@ -40,3 +39,5 @@
         %h2 
           = f.username
         %h4 Lorem ipsum dolor sit amet...
+:javascript
+  subscribe()

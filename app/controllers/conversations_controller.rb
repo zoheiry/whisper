@@ -3,16 +3,8 @@ class ConversationsController < ApplicationController
 
 	# GET /c/:channel_name
 	def conversation
-		@channel_name = params[:channel_name]
 		@user = current_user
-		@conversation = Conversation.where(channel_name: params[:channel_name])[0]
-		@user_id
-		if @conversation.u1_id == current_user.id
-			@user_id = @conversation.u2_id
-		else
-			@user_id = @conversation.u1_id
-		end
-		@other_user = User.find(@user_id)
+		@other_user = User.where(username: params[:channel_name])[0]
 	end
 
 	# GET /k/:public_key
@@ -39,14 +31,11 @@ class ConversationsController < ApplicationController
 			u2_pk = u2.public_key
 
 			c = Conversation.new
-			cn = current_user.username + u2.username
 
 			c.u1_id = u1_id
 			c.u2_id = u2_id
 			c.u1_pk = u1_pk
 			c.u2_pk = u2_pk
-			c.channel_name = cn
-
 			if c.save
 				redirect_to "/c/#{c.channel_name}", notice: "Successfully added #{u2.username}!"
 			else

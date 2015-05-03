@@ -36,6 +36,9 @@ $(document).on('keyup', '#add_friend_input', function(e){
 });
 
 $(document).on('click', '#send_message', function(){
+  if($(".reply-area").val().length == 0) {
+    return;
+  }
   publish($(".reply-area").val());
   $(".reply-area").val('');
 });
