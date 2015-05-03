@@ -13,8 +13,17 @@ function subscribe() {
 }
 
 function publish(message) {
-	var message_html = "<div class='clearfix'><div class='single-message sender'>" + message + "</div></div>"
-	$(".messages-container").append(message_html);
+	if(message[0] == "^") {
+		var message_html = "<div class='clearfix'><div class='single-message sender' id='map-canvas'></div></div>";
+		var lat = message.replace('^', '').split(',')[0];
+		var lng = message.replace('^', '').split(',')[1];
+		$(".messages-container").append(message_html);
+		createMap('map-canvas', lat, lng);
+	}
+	else {
+		var message_html = "<div class='clearfix'><div class='single-message sender'>" + message + "</div></div>"
+		$(".messages-container").append(message_html);
+	}
 	channel_name = $("#publish_channel").text();
 	if(channel_name[0] == "~") {
 		//////////////////this is a group message////////////////
@@ -54,7 +63,16 @@ function subscribeCallback(m) {
 	if((decrypted_message.split('~')[0] == $("#publish_channel").text()) || (decrypted_message.split('~')[0] == $("#channel_id").text())) {
 		decrypted_message = decrypted_message.split('~')[1];
 		var message_html = "<div class='clearfix'><div class='single-message receiver'>" + decrypted_message + "</div></div>"
-		$(".messages-container").append(message_html);
+		if(decrypted_message[0] == "^") {
+			var message_html = "<div class='clearfix'><div class='single-message receiver' id='map-canvas'></div></div>";
+			var lat = decrypted_message.replace('^', '').split(',')[0];
+			var lng = decrypted_message.replace('^', '').split(',')[1];
+			$(".messages-container").append(message_html);
+			createMap('map-canvas', lat, lng);
+		}
+		else {
+			$(".messages-container").append(message_html);
+		}
 		$(".messages-container").animate({
 			scrollTop: $(".single-message").last().offset().top
 		});

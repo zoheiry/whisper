@@ -1,3 +1,4 @@
+
 #subscribe_channel{style: "display: none;"}<
   = @user.username
 -unless @is_group
@@ -13,6 +14,7 @@
   #channel_id{style: "display: none"}<
     = @channel_name
 .container_ui.clearfix.large-container
+  %i.fa.fa-map-marker.send-location
   .menu-bar.hidden-menu
     %ul
       %li

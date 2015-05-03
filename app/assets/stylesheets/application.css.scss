@@ -814,3 +814,20 @@ body .container_ui input[type="checkbox"]:checked + .message > .container_ui__ex
     border-radius: 3px;
   }
 }
+
+.send-location {
+  cursor: pointer;
+  position: absolute;
+  bottom: 72px;
+  color: #56B699;
+  font-size: 35px;
+  right: 20px;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+#map-canvas {
+  width: 150px;
+  height: 150px;
+}

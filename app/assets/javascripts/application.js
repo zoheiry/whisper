@@ -15,7 +15,13 @@
 //= require turbolinks
 //= require_tree .
 
+var current_lng;
+var current_lat;
 
+$(document).on('click', '.send-location', function(){
+  getLocation();
+  setTimeout(function(){publish("^" + current_lat + "," + current_lat); }, 500);
+});
 
 $(document).on('click', '.menu_icon', function(){
 	$(".menu-bar").toggleClass('hidden-menu');
@@ -181,3 +187,32 @@ $(document).on('click', '#create-group', function(){
     }
   });
 });
+
+
+function createMap(container, lat, lng) {
+  lat = parseFloat(lat);
+  lng = parseFloat(lng);
+  function initialize() {
+    var mapCanvas = document.getElementById(container);
+    var mapOptions = {
+      center: new google.maps.LatLng(lat, lng),
+      zoom: 8,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+    }
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+  initialize()
+}
+
+function getLocation() {
+  navigator.geolocation.getCurrentPosition(foundLocation);
+  var lat;
+  var lng;
+  function foundLocation(position) {
+    lat = position.coords.latitude;
+    lng = position.coords.longitude;
+    current_lat = lat;
+    current_lng = lng;
+  }
+}
