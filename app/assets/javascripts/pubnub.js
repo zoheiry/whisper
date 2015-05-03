@@ -18,7 +18,7 @@ function publish(message) {
 	channel_name = $("#publish_channel").text();
 	console.log("going to encrypt this " + message);
 	console.log($("#receiver_pub_key").text());
-	var encryped_message = encrypt(message, $("#receiver_pub_key").text());
+	var encryped_message = encrypt($("#subscribe_channel").text() + "~" + message, $("#receiver_pub_key").text());
 	PUBNUB_message.publish({
 		channel: channel_name,
 		message: encryped_message
@@ -34,10 +34,16 @@ function subscribeCallback(m) {
 	console.log("going to decrypt this " + m);
 	channel_name = $("#publish_channel").text();
 	var decrypted_message = decrypt(m, localStorage.getItem("private_key"));
-	var message_html = "<div class='clearfix'><div class='single-message receiver'>" + decrypted_message + "</div></div>"
-	$(".messages-container").append(message_html);
-	$(".messages-container").animate({
-		scrollTop: $(".single-message").last().offset().top
-	});
-	localStorage.setItem('all_messages_' + channel_name, localStorage["all_messages_" + channel_name] + "~" + channel_name + '^' + "sender^" + decrypted_message);
+	if(decrypted_message.split('~')[0] == $("#publish_channel").text()) {
+		decrypted_message = decrypted_message.split('~')[1];
+		var message_html = "<div class='clearfix'><div class='single-message receiver'>" + decrypted_message + "</div></div>"
+		$(".messages-container").append(message_html);
+		$(".messages-container").animate({
+			scrollTop: $(".single-message").last().offset().top
+		});
+			localStorage.setItem('all_messages_' + channel_name, localStorage["all_messages_" + channel_name] + "~" + channel_name + '^' + "sender^" + decrypted_message);
+	}
+	else {
+		alert(decrypted_message.split('~')[0] + " is trying to contact you");
+	}
 }
