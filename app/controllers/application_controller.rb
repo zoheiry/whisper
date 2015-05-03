@@ -14,4 +14,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << [ :username, :mobile_number ]
 
   end
+
+  def is_authified
+		if session[:autify] != "true"
+			redirect_to "/two-step"
+		end
+	end
 end

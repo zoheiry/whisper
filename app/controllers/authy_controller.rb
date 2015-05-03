@@ -24,6 +24,7 @@ class AuthyController < ApplicationController
   	response = Authy::API.verify(:id => current_user.authy_id, :token => auth_code)
 
     if response.ok?
+    	session[:authyify] = "true"
       redirect_to "/", notice: "Successfully confirmed!"
     else
       redirect_to "/two-step", alert: "You entered an invalid token, a new one has been sent out!"
