@@ -57,7 +57,15 @@ class HomeController < ApplicationController
 	def accept
 		id1 = params["id1"]
 		id2 = params["id2"]
-		
-		redirect_to root_path
+		Pending.where(u1_id: id1, u2_id: id2).destroy_all
+		c1 = Conversation.new(u1_id: id1, u2_id: id2, 
+			u1_pk: User.find(id1).public_key, u2_pk: User.find(id2).public_key)
+
+		if c1.save
+			redirect_to root_path, notice: "you are now friends with 
+			#{User.find(id1).username}" 
+		else
+			redirect_to root_path, notice: "Something wrong happend"
+		end
 	end
 end

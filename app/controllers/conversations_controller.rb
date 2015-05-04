@@ -31,14 +31,14 @@ class ConversationsController < ApplicationController
 	def key
 		current_user.public_key = params[:public_key]
 		current_user.save
-		render :json => {status: "Keys added successfully, but please keep your private key safe, as you will be aske for it upon sign up"}
+		render :json => {status: "Keys added successfully, but please keep your private key safe, as you will be asked for it upon sign up"}
 	end
 
 	# GET /a/:user_id
 	def add_friend
 		# raise Exception params
 		u1_id = current_user.id
-		u2_username = params[:username]
+		u2_username = params[:user_id]
 		u2 = User.where(username: u2_username)[0]
 		if(!u2)
 			redirect_to "/", alert: "User does not exist" and return
@@ -51,8 +51,13 @@ class ConversationsController < ApplicationController
 		
 		else
 			if Pending.where(u1_id: u2_id, u2_id: current_user.id).length == 0
-				Pending.create(u1_id: u1_id, u2_id: u2_id)
-				redirect_to "/", notice: "Awaiting your friends reply" and return
+				if Conversation.where(u1_id: u2_id, u2_id: current_user.id) == 0 and 
+					Conversation.where(u1_id: current_user.id, u2_id: u2_id) == 0
+					Pending.create(u1_id: u1_id, u2_id: u2_id)
+					redirect_to "/", notice: "Awaiting your friends reply" and return
+				else
+					redirect_to "/", alert: "you are already friends with #{u2_username}" and return
+				end
 			else
 				u1_pk = current_user.public_key
 				u2_pk = u2.public_key
