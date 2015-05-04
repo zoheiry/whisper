@@ -831,3 +831,13 @@ body .container_ui input[type="checkbox"]:checked + .message > .container_ui__ex
   width: 150px;
   height: 150px;
 }
+
+#special_button {
+     background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     /*border is optional*/
+     /*border-bottom:1px solid #444; 
+     cursor: pointer;*/
+}

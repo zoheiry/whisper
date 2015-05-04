@@ -57,7 +57,29 @@
           = f.username
         %h4 
           = f.status
-  - if @friends.length == 0
+  - if @pending_friends.length != 0
+    %p.empty-container-text pending requests
+    - @pending_friends.each_with_index do |f, i|
+      = form_tag accept_pending_path, :method => :post do
+        %button#special_button.message{type: "submit"}
+          = hidden_field_tag "id1" , f.id
+          = hidden_field_tag "id2" , @user.id
+          .container_ui__item
+            .face
+              %img{:src => "#{f.gravatar_url}"}
+              - @color_num = i
+              - if i > 4
+                - @color_num = 0
+              - @class_name = "_" + @color_num.to_s 
+              .color_bar{class: "#{@class_name}"}
+                %p Now Reading
+                %span Read
+            %h2 
+              = f.username
+            %h4 
+              = f.status
+            %h3 click to accept
+  - if @pending_friends.length == 0 && @friends.length == 0        
     %p.empty-container-text You haven't added any friends yet, please add friends to start chatting.
   - @group_chats.each_with_index do |g, i|
     %a.message{href: "/c/#{g.group_name}" }

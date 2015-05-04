@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   post '/create_group/:members' => "home#create_group"
 
+  post '/acc_pend' => "home#accept", as: :accept_pending
+
   # devise_for :users
 
   # devise_for :users

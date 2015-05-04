@@ -22,7 +22,12 @@ class HomeController < ApplicationController
 			@friends.push(User.find(f))
 		end
 		@group_chats = GroupChat.where(u_id: current_user.id)
-
+		#showing pending requests
+		@pending_requests = Pending.where(u2_id: current_user.id)
+		@pending_friends = []
+		@pending_requests.each do |pr|
+			@pending_friends.push(User.find(pr.u1_id))
+		end
 	end
 	
 	def keys
@@ -47,5 +52,12 @@ class HomeController < ApplicationController
 		end
 
 		render :json => {status: "created group"}
+	end
+
+	def accept
+		id1 = params["id1"]
+		id2 = params["id2"]
+		
+		redirect_to root_path
 	end
 end
