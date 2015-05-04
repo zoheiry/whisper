@@ -51,8 +51,8 @@ class ConversationsController < ApplicationController
 		
 		else
 			if Pending.where(u1_id: u2_id, u2_id: current_user.id).length == 0
-				if Conversation.where(u1_id: u2_id, u2_id: current_user.id) == 0 and 
-					Conversation.where(u1_id: current_user.id, u2_id: u2_id) == 0
+				if Conversation.where(u1_id: u2_id, u2_id: current_user.id).length == 0 and 
+					Conversation.where(u1_id: current_user.id, u2_id: u2_id).length == 0
 					Pending.create(u1_id: u1_id, u2_id: u2_id)
 					redirect_to "/", notice: "Awaiting your friends reply" and return
 				else
