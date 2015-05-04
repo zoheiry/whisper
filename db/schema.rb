@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150503074435) do
+ActiveRecord::Schema.define(version: 20150503164220) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "u1_id"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20150503074435) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "group_chats", force: :cascade do |t|
+    t.integer  "u_id"
+    t.integer  "group_id"
+    t.string   "group_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "pendings", force: :cascade do |t|
     t.integer  "u1_id"
     t.integer  "u2_id"
@@ -31,12 +39,12 @@ ActiveRecord::Schema.define(version: 20150503074435) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",                            null: false
+    t.string   "encrypted_password",     default: "",                            null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,                             null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -48,7 +56,7 @@ ActiveRecord::Schema.define(version: 20150503074435) do
     t.string   "username"
     t.string   "public_key"
     t.string   "gravatar_url"
-    t.string   "status"
+    t.string   "status",                 default: "Hey there I'm using whisper"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

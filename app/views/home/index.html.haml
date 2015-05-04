@@ -5,7 +5,7 @@
     %ul
       %li
         %a#add_friend_btn{href: "#"}
-          %i.fa.fa-users
+          %i.fa.fa-user
           Add Friend
         %input#add_friend_input{type: "text", placeholder: "Your friend's username", autofocus: "true"}
       %li
@@ -16,6 +16,15 @@
         %a{href: "/your_keys"}
           %i.fa.fa-key
           Generate new Keys
+      %li
+        %a#group-chat{href: "#"}
+          %i.fa.fa-users
+          Create group chat
+        .user-dropdown
+          - @friends.each do |f|
+            %div{username: "#{f.username}"}
+              = f.username
+          %span.green-btn#create-group Create group
       %li
         = link_to destroy_user_session_path, :method => :delete do
           %i.fa.fa-sign-out
@@ -50,5 +59,21 @@
           = f.status
   - if @friends.length == 0
     %p.empty-container-text You haven't added any friends yet, please add friends to start chatting.
+  - @group_chats.each_with_index do |g, i|
+    %a.message{href: "/c/#{g.group_name}" }
+      .container_ui__item
+        .face
+          %img{:src => "/assets/group_chat.png"}
+          - @color_num = i
+          - if i > 4
+            - @color_num = 0
+          - @class_name = "_" + @color_num.to_s 
+          .color_bar{class: "#{@class_name}"}
+            %p Now Reading
+            %span Read
+        %h2 
+          = g.group_name
+        %h4 
+          Group Chat
 :javascript
   subscribe()

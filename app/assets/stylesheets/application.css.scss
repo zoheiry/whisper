@@ -204,15 +204,19 @@ body{
       }
       input[type="checkbox"]:checked + .message > .container_ui__expand .body .user .face img{
         animation:pop .5s .5s forwards; 
+        -webkit-animation:pop .5s .5s forwards; 
       }
       input[type="checkbox"]:checked + .message > .container_ui__expand .body .user .details{
         animation:popup .5s .5s forwards; 
+        -webkit-animation:popup .5s .5s forwards; 
       }
       input[type="checkbox"]:checked + .message > .container_ui__expand .body .content{
         animation:popup .5s .7s forwards; 
+        -webkit-animation:popup .5s .7s forwards; 
       }
       input[type="checkbox"]:not(:checked) + .message > .container_ui__expand .body .user .face img{
         animation:poprev .5s .5s forwards;
+        -webkit-animation:poprev .5s .5s forwards;
         transform:scale(0);
         transition-property:transform;
       }
@@ -220,6 +224,7 @@ body{
       transition-property:opacity,top;
       transition-duration:0.4s;
       animation:pop .5s forwards;
+      -webkit-animation:pop .5s forwards;
       input[type="checkbox"]:checked + .message > .container_ui__item .face .color_bar{
         right:auto;
         width: 350px;
@@ -487,22 +492,77 @@ body .container_ui input[type="checkbox"]:checked + .message > .container_ui__ex
 
 // Let's do some animations!
 
+
 @keyframes pop{
-  0%{transform:scale(0)}
-  50%{transform:scale(1.2)}
-  100%{transform:scale(1)}
+  0% {
+    -webkit-transform:scale(0);
+    transform:scale(0);
+  }
+  50% {
+    -webkit-transform:scale(1.2);
+    transform:scale(1.2);
+  }
+  100% {
+    -webkit-transform:scale(1);
+    transform:scale(1);
+  }
+}
+
+@-webkit-keyframes pop{
+  0% {
+    -webkit-transform:scale(0);
+    transform:scale(0);
+  }
+  50% {
+    -webkit-transform:scale(1.2);
+    transform:scale(1.2);
+  }
+  100% {
+    -webkit-transform:scale(1);
+    transform:scale(1);
+  }
 }
 
 @keyframes poprev{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.2)}
-  100%{transform:scale(0)}
+  0% {
+    -webkit-transform:scale(1);
+    transform:scale(1);
+  }
+  50% {
+    -webkit-transform:scale(1.2);
+    transform:scale(1.2);
+  }
+  100% {
+    -webkit-transform:scale(0);
+    transform:scale(0);
+  }
+}
+
+@-webkit-keyframes poprev{
+  0% {
+    -webkit-transform:scale(1);
+    transform:scale(1);
+  }
+  50% {
+    -webkit-transform:scale(1.2);
+    transform:scale(1.2);
+  }
+  100% {
+    -webkit-transform:scale(0);
+    transform:scale(0);
+  }
 }
 
 @keyframes popup{
   from{top:10px;opacity:0}
   to{top:0px;opacity:1}
 }
+
+@-webkit-keyframes-popup{
+  from{top:10px;opacity:0}
+  to{top:0px;opacity:1}
+}
+
 
 .menu-bar {
 	box-shadow: -7px 7px 15px 0px rgba(0, 0, 0, 0.4);
@@ -728,4 +788,46 @@ body .container_ui input[type="checkbox"]:checked + .message > .container_ui__ex
   width: 90%;
   margin: 0 auto;
   display: block;
+}
+
+.user-dropdown {
+  display: none;
+  div {
+    cursor: pointer;
+    background-color: #2b9ab6;
+    color: #FFF;
+    border-bottom: solid 1px #e3e3e3;
+    padding: 10px;
+    text-align: center;
+    &:last-child {
+      border-bottom: none;
+    }
+    &.selected {
+      background-color: #0a1c28;
+    }
+  }
+  span {
+    display: block;
+    width: 50%;
+    margin: 5px auto;
+    text-align: center;
+    border-radius: 3px;
+  }
+}
+
+.send-location {
+  cursor: pointer;
+  position: absolute;
+  bottom: 72px;
+  color: #56B699;
+  font-size: 35px;
+  right: 20px;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+#map-canvas {
+  width: 150px;
+  height: 150px;
 }
